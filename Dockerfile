@@ -4,6 +4,7 @@ ENV PHP_LIB_PATH "/usr/local/lib/php/extensions/no-debug-non-zts-20170718"
 ENV PHP_DBG_PATH "/usr/local/php-dbg"
 ENV PHP_CONF_D "/usr/local/etc/php/conf.d"
 
+
 FROM base as builder
 ARG NEW_RELIC_URL
 
@@ -61,4 +62,5 @@ ENV NEW_RELIC_KEY  "xxxxx"
 ENV NEW_RELIC_APP_NAME "MyAPP"
 
 ENV PHPED_ENABLED false
+ENV DEBUG_CONFIG_FILES false
 ENV PHP_DBG_ALLOWED_HOSTS "172.18.0.0/24 localhost 127.0.0.1 .alekc.org host.docker.internal .localhost"

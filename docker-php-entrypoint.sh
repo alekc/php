@@ -7,7 +7,9 @@ if [ "${NEW_RELIC_ENABLED}" ]; then
     cp "${PHP_DBG_PATH}/newrelic.ini" "${PHP_CONF_D}/newrelic.ini"
     sed -i -e 's/"REPLACE_WITH_REAL_KEY"/"${NEW_RELIC_KEY}"/'
 
-    cat "${PHP_CONF_D}/newrelic.ini"
+    if [ "${DEBUG_CONFIG_FILES}" ]; then
+        cat "${PHP_CONF_D}/newrelic.ini"
+    fi
 else
     echo "Disabling new relic"
     rm "${PHP_LIB_PATH}/newrelic.so"
@@ -26,7 +28,9 @@ if [ "${PHPED_ENABLED}" ]; then
     echo "debugger.hosts_deny=ALL"
     echo "debugger.ports=7869"
     }  >> "${PHP_CONF_D}/debugger.ini"
-    cat "${PHP_CONF_D}/debugger.ini"
+    if [ "${DEBUG_CONFIG_FILES}" ]; then
+        cat "${PHP_CONF_D}/debugger.ini"
+    fi
 
 else
     echo "Disabling Nusphere PHPed"
